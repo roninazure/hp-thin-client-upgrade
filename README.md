@@ -11,6 +11,7 @@ The primary execution environment for these playbooks is a dedicated Red Hat Ans
 Directory Structure
 
 On the Red Hat server: /home/[username]/Ansible_Playbooks
+
 On macOS: /Users/[username]/Ansible_Playbooks
 Replace [username] with your actual username on the respective systems.
 
