@@ -71,6 +71,6 @@ Ensure code adherence to the existing style and standards.
 Submit a pull request with a clear description of changes.
 License
 
-[Specify the license here, or state "This project is licensed under the MIT License - see the LICENSE file for details"]
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details
 
 This updated README now includes the specific directory paths for both environments. You can further modify it to suit any additional details or requirements of your project.
