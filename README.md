@@ -45,10 +45,15 @@ Installing Ansible on MacOS
 For backup or supplementary use, Ansible can be installed on macOS:
 
 Install Homebrew (if not already installed):
+
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 Install Ansible using Homebrew:
+
 brew install ansible
+
 Verify the installation:
+
 ansible --version
 
 Running the Playbooks
