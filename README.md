@@ -8,6 +8,7 @@ Overview
 
 The primary execution environment for these playbooks is a dedicated Red Hat Ansible server (IDCPLADMIN01, IP: 172.23.7.244). They can also be executed from macOS devices as a secondary option or for backup purposes.
 
+
 Directory Structure
 
 On the Red Hat server: /home/[username]/Ansible_Playbooks
@@ -15,16 +16,24 @@ On the Red Hat server: /home/[username]/Ansible_Playbooks
 On macOS: /Users/[username]/Ansible_Playbooks
 Replace [username] with your actual username on the respective systems.
 
+
 Playbooks
 
 This project includes the following Ansible playbooks:
 
 backup_store_printers_conf.yml - Backs up printer configurations from the HP Thin Clients.
+
 deploy_printers_conf_to_stores.yml - Deploys printer configurations to stores.
+
 ssh_key_management.yml - Manages SSH keys for secure access to Thin Clients.
+
 ping_servers.yml - Checks network connectivity by pinging servers.
+
 uptime.yml - Reports the uptime of Thin Clients.
+
 An inventory file is also included to manage the list of HP Thin Clients.
+
+
 
 Getting Started
 
