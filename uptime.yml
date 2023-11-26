@@ -1,6 +1,6 @@
 ---
 # Ansible Playbook: uptime.yml
-# Created by: [Your Name]
+# Created by: Scott Steele
 # Date: 2023-11-21
 # Description: 
 #   This playbook checks and displays the uptime of all servers listed in the inventory. 
