@@ -14,7 +14,7 @@
   tasks:
     - name: Extract store number and create folder
       ansible.builtin.command:
-        cmd: "mkdir -p /Users/scottsteele/Ansible_Playbooks/Stores_printers_conf/{{ item.split('WS')[1].split('-')[0] }}"
+        cmd: "mkdir -p /Users/[username]/Ansible_Playbooks/Stores_printers_conf/{{ item.split('WS')[1].split('-')[0] }}"
       loop: "{{ ansible_play_hosts }}"
       delegate_to: localhost
       run_once: true
@@ -22,7 +22,7 @@
     - name: Backup printers.conf file for each store
       ansible.builtin.fetch:
         src: /etc/cups/printers.conf
-        dest: "/Users/scottsteele/Ansible_Playbooks/Stores_printers_conf/{{ item.split('WS')[1].split('-')[0] }}/printers.conf"
+        dest: "/Users/[username]/Ansible_Playbooks/Stores_printers_conf/{{ item.split('WS')[1].split('-')[0] }}/printers.conf"
         flat: yes
       loop: "{{ ansible_play_hosts }}"
       delegate_to: "{{ item }}"
