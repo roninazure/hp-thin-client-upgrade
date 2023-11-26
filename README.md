@@ -61,13 +61,12 @@ On the Red Hat Ansible Server
 Navigate to the playbook directory and run:
 
 ansible-playbook <playbook-name>.yml -i inventory
+
 On MacOS
 Change to the playbook directory on your Mac and run:
 
 ansible-playbook <playbook-name>.yml -i inventory
 Replace <playbook-name> with the specific playbook you wish to execute.
-
-Contributing
 
 Contributions are welcome. Please adhere to the following guidelines:
 
@@ -77,5 +76,3 @@ Submit a pull request with a clear description of changes.
 License
 
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details
-
-This updated README now includes the specific directory paths for both environments. You can further modify it to suit any additional details or requirements of your project.
