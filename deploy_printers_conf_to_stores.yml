@@ -7,7 +7,7 @@
 #   based on their store number extracted from the hostname. It ensures that each 
 #   thin client in a specific store gets the correct configuration file from a 
 #   designated directory. After deployment, it restarts the CUPS service on each unit.
-# Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+# Copyright: © 2023. All rights reserved. Contact S.Steele to modify this playbook.
 
 - name: Deploy printers.conf to Thin Clients
   hosts: all
