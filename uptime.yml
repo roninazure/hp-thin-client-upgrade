@@ -7,7 +7,7 @@
 #   It executes the 'uptime' command on each host to gather information about how long 
 #   the server has been running without a restart. This can be useful for monitoring 
 #   system stability and maintenance needs.
-#Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+#Copyright: © 2023. All rights reserved. Contact S.Steele to modify this playbook.
 
 - name: Check uptime
   hosts: all
