@@ -73,6 +73,5 @@ Contributions are welcome. Please adhere to the following guidelines:
 Fork the repository and create a branch for your feature or fix.
 Ensure code adherence to the existing style and standards.
 Submit a pull request with a clear description of changes.
-License
 
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details
