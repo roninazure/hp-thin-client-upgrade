@@ -12,7 +12,7 @@
 - name: Deploy printers.conf to Thin Clients
   hosts: all
   vars:
-    local_path: "/Users/scottsteele/Ansible_Playbooks/Stores_printers_conf/"
+    local_path: "/Users/[username]/Ansible_Playbooks/Stores_printers_conf/"
   tasks:
     - name: Extract store number from hostname
       set_fact:
