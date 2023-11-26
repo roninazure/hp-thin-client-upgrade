@@ -1,13 +1,13 @@
 ---
 # Ansible Playbook: backup_store_printers_conf.yml
-# Created by: [Your Name]
+# Created by: Scott Steele
 # Date: 2023-11-22
 # Description: 
 #   This playbook is designed for backing up the printers.conf files from thin clients in various stores.
 #   It first creates folders for each store on the local machine, then fetches the printers.conf file from
 #   each thin client and saves it in the corresponding store's folder. The playbook is tailored to handle
 #   store numbers extracted from the hostname of each device.
-# Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+# Copyright: © 2023. All rights reserved. Contact the S.Steele to modify this playbook.
 
 - hosts: stores
   gather_facts: no
