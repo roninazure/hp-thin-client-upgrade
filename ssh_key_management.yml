@@ -1,0 +1,41 @@
+---
+# Ansible Playbook: ssh_key_management.yml
+# Created by: Scott Steele
+# Date: 2023-11-21
+# Description: 
+#   This playbook has two main functions: First, it generates an SSH key pair on the localhost 
+#   if it does not already exist. Second, it copies the public SSH key to all remote hosts listed 
+#   in the inventory. This facilitates key-based authentication for the root user on all hosts, 
+#   enhancing security and streamlining access.
+# Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+
+- name: SSH Key Management
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Generate SSH Key
+      community.crypto.openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        state: present
+      register: keygen
+
+    - name: Output if Key was Generated
+      debug:
+        msg: "SSH key pair generated."
+      when: keygen.changed
+
+- name: Copy SSH Key to Remote Hosts
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: root
+    ansible_ssh_pass: "ica123"
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o ConnectTimeout=10'
+  tasks:
+    - name: Copy SSH Public Key to Host
+      ansible.builtin.authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+

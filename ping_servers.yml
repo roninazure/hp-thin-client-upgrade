@@ -1,0 +1,19 @@
+---
+# Ansible Playbook: ping_servers.yml
+# Created by: Scott Steele
+# Date: 2023-11-21
+# Description: 
+#   This playbook performs a simple ping test on all servers listed in the inventory.
+#   It's used to verify connectivity to all hosts as the root user. This is a basic diagnostic
+#   tool to ensure network communication is functioning as expected with each host.
+# Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+
+- name: Ping Servers
+  hosts: all
+  gather_facts: no
+  remote_user: root
+
+  tasks:
+  - name: Ping Test
+    ping:
+

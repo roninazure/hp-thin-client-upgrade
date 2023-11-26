@@ -1,0 +1,37 @@
+---
+# Ansible Playbook: backup_store_printers_conf.yml
+# Created by: [Your Name]
+# Date: 2023-11-22
+# Description: 
+#   This playbook is designed for backing up the printers.conf files from thin clients in various stores.
+#   It first creates folders for each store on the local machine, then fetches the printers.conf file from
+#   each thin client and saves it in the corresponding store's folder. The playbook is tailored to handle
+#   store numbers extracted from the hostname of each device.
+# Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+
+- hosts: stores
+  gather_facts: no
+  tasks:
+    - name: Extract store number and create folder
+      ansible.builtin.command:
+        cmd: "mkdir -p /Users/scottsteele/Ansible_Playbooks/Stores_printers_conf/{{ item.split('WS')[1].split('-')[0] }}"
+      loop: "{{ ansible_play_hosts }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Backup printers.conf file for each store
+      ansible.builtin.fetch:
+        src: /etc/cups/printers.conf
+        dest: "/Users/scottsteele/Ansible_Playbooks/Stores_printers_conf/{{ item.split('WS')[1].split('-')[0] }}/printers.conf"
+        flat: yes
+      loop: "{{ ansible_play_hosts }}"
+      delegate_to: "{{ item }}"
+      register: fetch_result
+      ignore_errors: yes
+
+    - name: Check for successful fetch
+      ansible.builtin.debug:
+        msg: "Successfully fetched printers.conf for {{ item.item }}"
+      loop: "{{ fetch_result.results }}"
+      when: item.failed != true
+

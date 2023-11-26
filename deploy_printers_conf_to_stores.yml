@@ -1,0 +1,32 @@
+---
+# Ansible Playbook: deploy_printers_conf_to_stores.yml
+# Created by: Scott Steele
+# Date: 2023-11-25
+# Description: 
+#   This playbook is designed to deploy printers.conf files to thin client units 
+#   based on their store number extracted from the hostname. It ensures that each 
+#   thin client in a specific store gets the correct configuration file from a 
+#   designated directory. After deployment, it restarts the CUPS service on each unit.
+# Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+
+- name: Deploy printers.conf to Thin Clients
+  hosts: all
+  vars:
+    local_path: "/Users/scottsteele/Ansible_Playbooks/Stores_printers_conf/"
+  tasks:
+    - name: Extract store number from hostname
+      set_fact:
+        store_number: "{{ inventory_hostname.split('WS')[1][0:4] }}"
+
+    - name: Copy printers.conf file to Thin Client
+      copy:
+        src: "{{ local_path }}/{{ store_number }}/printers.conf"
+        dest: "/etc/cups/printers.conf"
+      when: inventory_hostname | regex_search('WS' + store_number)
+
+    - name: Restart CUPS service
+      service:
+        name: cups
+        state: restarted
+      when: inventory_hostname | regex_search('WS' + store_number)
+

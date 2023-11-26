@@ -1,0 +1,23 @@
+---
+# Ansible Playbook: uptime.yml
+# Created by: [Your Name]
+# Date: 2023-11-21
+# Description: 
+#   This playbook checks and displays the uptime of all servers listed in the inventory. 
+#   It executes the 'uptime' command on each host to gather information about how long 
+#   the server has been running without a restart. This can be useful for monitoring 
+#   system stability and maintenance needs.
+#Copyright: © 2023. All rights reserved. Contact the owner to modify this playbook.
+
+- name: Check uptime
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Uptime
+      command: uptime
+      register: uptime_output
+
+    - name: Show uptime
+      debug:
+        var: uptime_output.stdout
+
