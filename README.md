@@ -25,6 +25,8 @@ backup_store_printers_conf.yml - Backs up printer configurations from the HP Thi
 
 deploy_printers_conf_to_stores.yml - Deploys printer configurations to stores.
 
+get_thinpro_os_version.yml - Gathers the Thin Pro system versions from HP ThinPro devices.
+
 ssh_key_management.yml - Manages SSH keys for secure access to Thin Clients.
 
 ping_servers.yml - Checks network connectivity by pinging servers.
