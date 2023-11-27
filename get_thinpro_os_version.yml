@@ -1,0 +1,46 @@
+
+# Ansible Playbook: gather_thinpro_versions.yml
+# Created by: Scott Steele
+# Description:
+#   This playbook is designed to gather the operating system versions from HP ThinPro devices 
+#   within the 'stores' group. It retrieves the OS version from each ThinPro device using a command 
+#   and stores this information in a temporary file on the Ansible controller. After collecting data 
+#   from all devices, it consolidates the information into a single file 'thinpro_versions.txt'. This 
+#   approach ensures efficient data collection and aggregation suitable for large-scale infrastructures.
+# Copyright: © 2023. All rights reserved. Contact Scott Steele for permissions and modifications.
+
+- name: Gather HP ThinPro OS Versions
+  hosts: stores
+  gather_facts: no
+  vars:
+    ansible_user: root
+    ansible_ssh_private_key_file: /Users/scottsteele/.ssh/id_rsa
+
+  tasks:
+    - name: Retrieve OS version from ThinPro device
+      command: cat /etc/lsb-release
+      register: os_version
+      ignore_errors: true
+
+    - name: Store OS version information for each host in a temporary file
+      lineinfile:
+        path: "/tmp/thinpro_versions_temp.txt"
+        line: "{{ inventory_hostname }}:\n{{ os_version.stdout | default('Unavailable') }}\n"
+        create: yes
+      delegate_to: localhost
+
+    - name: Write all OS versions to local file at the end
+      when: inventory_hostname == ansible_play_hosts_all[-1]
+      block:
+        - name: Read temporary version info file
+          ansible.builtin.slurp:
+            src: "/tmp/thinpro_versions_temp.txt"
+          register: version_info
+
+        - name: Write version info to final file
+          copy:
+            content: "{{ version_info['content'] | b64decode }}"
+            dest: "/Users/scottsteele/Ansible-Playbooks/Version/thinpro_versions.txt"
+      delegate_to: localhost
+      run_once: true
+
