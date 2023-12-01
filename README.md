@@ -42,13 +42,13 @@ Python Scripts for Enhanced Management
 
 In addition to the Ansible playbooks, this repository includes two Python scripts designed to further streamline the management and analysis of HP Thin Client devices.
 
-ThinPro Version Parser (ThinProVersionParser.py)
+ThinPro Version Parser (ThinProVersionParser.py) location /tmp.
 
 Description: This script is tailored for parsing a file containing entries of ThinPro systems, specifically identifying and processing entries with version 8.0.0. It reads through a file, identifies each system entry, and extracts relevant details like hostname and distribution description for systems matching the specified version.
 
 Usage: (tmp/thinpro_versions_file.txt') 
 
-ThinPro Inventory Creator (ThinProInventoryCreator.py)
+ThinPro Inventory Creator (ThinProInventoryCreator.py) location /tmp.
 
 Description: This script automates the generation of an Ansible-compatible inventory list from a dataset of ThinPro systems. It processes each system's hostname and IP address, creating a formatted inventory line including the Ansible user (set to 'root') for each ThinPro system in the dataset.
 
@@ -65,8 +65,6 @@ data = [
 inventory = create_inventory(data)
 for line in inventory:
     print(line)
-These scripts are integral for efficient ThinPro system management, especially when dealing with large networks of devices.
-
 
 
 
