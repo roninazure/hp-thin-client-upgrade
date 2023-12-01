@@ -36,6 +36,33 @@ uptime.yml - Reports the uptime of Thin Clients.
 An inventory file is also included to manage the list of HP Thin Clients.
 
 
+Python Scripts for Enhanced Management
+
+In addition to the Ansible playbooks, this repository includes two Python scripts designed to further streamline the management and analysis of HP Thin Client devices.
+
+ThinPro Version Parser (ThinProVersionParser.py)
+Description: This script is tailored for parsing a file containing entries of ThinPro systems, specifically identifying and processing entries with version 8.0.0. It reads through a file, identifies each system entry, and extracts relevant details like hostname and distribution description for systems matching the specified version.
+
+Usage: Invoke parse_file(tmp/thinpro_versions_file.txt') with the path to your ThinPro versions file. It's particularly useful for isolating specific version entries in a large dataset.
+
+ThinPro Inventory Creator (ThinProInventoryCreator.py)
+Description: This script automates the generation of an Ansible-compatible inventory list from a dataset of ThinPro systems. It processes each system's hostname and IP address, creating a formatted inventory line including the Ansible user (set to 'root') for each ThinPro system in the dataset.
+
+Usage: Supply the script with a dataset of ThinPro system details. It outputs a ready-to-use inventory list for Ansible, enhancing automation efficiency.
+
+
+Example:
+
+data = [
+    {'hostname': 'WS5002-TC02 - IP: 10.131.194.213', 'DISTRIB_DESCRIPTION': '"ThinPro 8.0.0"'},
+    # ... (additional entries)
+]
+
+inventory = create_inventory(data)
+for line in inventory:
+    print(line)
+These scripts are integral for efficient ThinPro system management, especially when dealing with large networks of devices.
+
 
 Getting Started
 
