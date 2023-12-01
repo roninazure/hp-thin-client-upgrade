@@ -36,6 +36,8 @@ uptime.yml - Reports the uptime of Thin Clients.
 An inventory file is also included to manage the list of HP Thin Clients.
 
 
+
+
 Python Scripts for Enhanced Management
 
 In addition to the Ansible playbooks, this repository includes two Python scripts designed to further streamline the management and analysis of HP Thin Client devices.
@@ -62,6 +64,8 @@ inventory = create_inventory(data)
 for line in inventory:
     print(line)
 These scripts are integral for efficient ThinPro system management, especially when dealing with large networks of devices.
+
+
 
 
 Getting Started
