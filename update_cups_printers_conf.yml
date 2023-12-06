@@ -1,0 +1,29 @@
+---
+# Playbook: Update CUPS Printers Configuration
+# Description: This playbook is designed to update the printers.conf file for CUPS (Common Unix Printing System) on hosts within the 'stores' group.
+# It applies changes using a Jinja2 template and then restarts the CUPS service to ensure the new configuration takes effect.
+# The playbook includes tasks to stop the CUPS service before applying changes and then restart it afterward for a consistent and safe update.
+# Use Case: Ideal for environments where printer settings need to be updated across multiple systems, ensuring consistency in printing configurations.
+
+- name: Update DeviceURI in printers.conf
+  hosts: stores
+  become: yes
+
+  tasks:
+    - name: Stop CUPS service
+      service:
+        name: cups
+        state: stopped
+
+    - name: Apply printers.conf template
+      template:
+        src: printers.conf.j2
+        dest: /etc/cups/printers.conf
+      notify: start cups
+
+  handlers:
+    - name: start cups
+      service:
+        name: cups
+        state: started
+
